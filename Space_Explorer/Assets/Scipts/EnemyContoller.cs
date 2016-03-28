@@ -3,6 +3,8 @@ using System.Collections;
 
 public class EnemyContoller : MonoBehaviour {
 
+	public float myHealth = 200;
+
 	// Use this for initialization
 	void Start () {
 
@@ -15,7 +17,13 @@ public class EnemyContoller : MonoBehaviour {
 	void OnTriggerEnter(Collider other){
 		Projectile bullet = other.gameObject.GetComponent<Projectile> ();
 		if (bullet != null) {
-			Debug.Log ("Take Damage!");
+			myHealth -= bullet.GetDamage ();
+			bullet.Hit ();
+			if (myHealth <= 0) {
+				Destroy (gameObject);
+			}
+
+		//	Debug.Log ("Take Damage!");
 		}
 	
 	}

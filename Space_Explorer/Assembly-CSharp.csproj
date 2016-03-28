@@ -45,11 +45,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\BulletShredder.cs" />
-     <Compile Include="Assets\Projectile.cs" />
+     <Compile Include="Assets\Scipts\BulletShredder.cs" />
      <Compile Include="Assets\Scipts\EnemyContoller.cs" />
      <Compile Include="Assets\Scipts\EnemySpawner.cs" />
      <Compile Include="Assets\Scipts\PlayerContoller.cs" />
+     <Compile Include="Assets\Scipts\Projectile.cs" />
      <None Include="Assets\Skybox\README.txt" />
  <Reference Include="UnityEngine.Networking">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>

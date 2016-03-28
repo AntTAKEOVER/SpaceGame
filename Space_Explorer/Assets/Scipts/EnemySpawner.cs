@@ -12,9 +12,9 @@ public class EnemySpawner : MonoBehaviour {
 	float boundaryRight;
 	// Use this for initialization
 	void Start () {
-	
-		boundaryLeft = Camera.main.ViewportToWorldPoint (new Vector3 (0, 0, 0)).x + width/2;
-		boundaryRight = Camera.main.ViewportToWorldPoint (new Vector3 (1, 0, 0)).x - width/2;
+		StartCoroutine ("getBoundary");
+		//boundaryLeft = Camera.main.ViewportToWorldPoint (new Vector3 (0, 0, 0)).x + width/2;
+		//boundaryRight = Camera.main.ViewportToWorldPoint (new Vector3 (1, 0, 0)).x - width/2;
 		foreach (Transform child in transform) {
 			GameObject enemy = Instantiate (Enemy1, child.transform.position, this.transform.rotation) as GameObject;
 			enemy.transform.parent = child;
@@ -45,4 +45,15 @@ public class EnemySpawner : MonoBehaviour {
 
 		
 	}
+
+	IEnumerator getBoundary(){
+		yield return new WaitForSeconds (0.25f);
+		{
+			boundaryLeft = Camera.main.ViewportToWorldPoint (new Vector3 (0, 0, 0)).x + width / 2;
+			boundaryRight = Camera.main.ViewportToWorldPoint (new Vector3 (1, 0, 0)).x - width / 2;
+		}
+
+
+	}
+
 }
