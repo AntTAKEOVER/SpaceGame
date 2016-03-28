@@ -7,6 +7,7 @@ public class PlayerContoller : MonoBehaviour {
 	public GameObject playerProjectile;
 	public float projectileSpeed;
 	public float fireSpeed;
+	public float myHealth = 250f;
 
 
 	// Use this for initialization
@@ -45,6 +46,20 @@ public class PlayerContoller : MonoBehaviour {
 	void Shoot(){
 		GameObject bullet =	Instantiate (playerProjectile, spawnPoint.transform.position, Quaternion.identity) as GameObject;
 		bullet.GetComponent<Rigidbody>().velocity = new Vector3(0,0, projectileSpeed);
+	}
+
+	void OnTriggerEnter(Collider other){
+		Projectile bullet = other.gameObject.GetComponent<Projectile> ();
+		if (bullet != null) {
+			myHealth -= bullet.GetDamage ();
+			bullet.Hit ();
+			if (myHealth <= 0) {
+				Destroy (gameObject);
+			}
+
+			//	Debug.Log ("Take Damage!");
+		}
+
 	}
 		
 }

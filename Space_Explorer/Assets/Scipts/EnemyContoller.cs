@@ -3,7 +3,11 @@ using System.Collections;
 
 public class EnemyContoller : MonoBehaviour {
 
+	public float bulletSpeed;
 	public float myHealth = 200;
+	public GameObject EnemyProjectile;
+	public GameObject projectileSpawnPoint;
+	public float shotFrequency = 0.5f;
 
 	// Use this for initialization
 	void Start () {
@@ -12,6 +16,10 @@ public class EnemyContoller : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+		float ProbabilityOfFiring = shotFrequency * Time.deltaTime;
+		if(Random.value < ProbabilityOfFiring){
+			Shoot();
+		}
 	}
 
 	void OnTriggerEnter(Collider other){
@@ -26,6 +34,12 @@ public class EnemyContoller : MonoBehaviour {
 		//	Debug.Log ("Take Damage!");
 		}
 	
+	}
+
+	void Shoot(){
+		
+		GameObject bullet =  Instantiate (EnemyProjectile, projectileSpawnPoint.transform.position, transform.rotation) as GameObject;
+		bullet.GetComponent<Rigidbody> ().velocity = new Vector3 (0, 0, -bulletSpeed);
 	}
 
 }
