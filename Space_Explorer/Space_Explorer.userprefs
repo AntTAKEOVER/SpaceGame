@@ -1,0 +1,16 @@
+﻿<Properties StartupItem="Assembly-CSharp.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scipts/EnemySpawner.cs">
+    <Files>
+      <File FileName="Assets/Scipts/PlayerContoller.cs" Line="35" Column="39" />
+      <File FileName="Assets/Scipts/EnemySpawner.cs" Line="47" Column="3" />
+      <File FileName="Assets/Scipts/EnemyContoller.cs" Line="18" Column="28" />
+      <File FileName="Assets/BulletShredder.cs" Line="17" Column="30" />
+      <File FileName="Assets/Projectile.cs" Line="6" Column="29" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

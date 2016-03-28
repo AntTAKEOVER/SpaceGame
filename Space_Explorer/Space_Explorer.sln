@@ -1,0 +1,23 @@
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2008
+
+Project("{3BB7748C-9E74-3537-6098-00975DE61886}") = "Space_Explorer", "Assembly-CSharp.csproj", "{4F3C198F-FC42-B4F7-1FDE-CA59C384B926}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4F3C198F-FC42-B4F7-1FDE-CA59C384B926}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F3C198F-FC42-B4F7-1FDE-CA59C384B926}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F3C198F-FC42-B4F7-1FDE-CA59C384B926}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F3C198F-FC42-B4F7-1FDE-CA59C384B926}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Assembly-CSharp.csproj
+	EndGlobalSection
+EndGlobal
