@@ -7,18 +7,20 @@ public class EnemySpawner : MonoBehaviour {
 	public float speed;
 	public float width = 10f;
 	public float height = 10f;
-
+	public float tilt = 35f;
+	public float spawnDelay = 0.5f;
+	public float movementTime = 0.08f;
+	public float rotateTime = 0.05f;
+	public GameObject dampner;
 	float boundaryLeft;
 	float boundaryRight;
 	// Use this for initialization
 	void Start () {
 		StartCoroutine ("getBoundary");
+		OnlySpawnFull ();
 		//boundaryLeft = Camera.main.ViewportToWorldPoint (new Vector3 (0, 0, 0)).x + width/2;
 		//boundaryRight = Camera.main.ViewportToWorldPoint (new Vector3 (1, 0, 0)).x - width/2;
-		foreach (Transform child in transform) {
-			GameObject enemy = Instantiate (Enemy1, child.transform.position, this.transform.rotation) as GameObject;
-			enemy.transform.parent = child;
-		}
+
 	}
 
 	public void OnDrawGizmos(){
@@ -27,23 +29,48 @@ public class EnemySpawner : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		if (transform.position.x <= boundaryLeft) {
+		if (dampner.transform.position.x <= boundaryLeft) {
 			if (speed >= 0) {
 				return;
 			} else {
 				speed = -speed;
 			}
 		}
-		if (transform.position.x >= boundaryRight) {
+		if (dampner.transform.position.x >= boundaryRight) {
 			if (speed <= 0) {
 				return;
 			} else {
 				speed = -speed;
 			}
 		}
-		transform.position += new Vector3 (speed * Time.deltaTime, 0, 0);
+		dampner.transform.position += new Vector3 (speed * Time.deltaTime, 0, 0);
+		transform.position = new Vector3 (Mathf.Lerp (transform.position.x, dampner.transform.position.x, movementTime), transform.position.y, transform.position.z);
+
+		if (AllEnemiesDead ()) {
+			Debug.Log ("Spawn New Wave");
+			OnlySpawnFull();
+		}
 
 		
+	}
+
+	Transform nextFreePos(){
+		foreach (Transform enemyGameoBject in transform) {
+			if (enemyGameoBject.childCount == 0) {
+				return enemyGameoBject;
+			}
+		}
+		return null;
+	}
+		
+
+	bool AllEnemiesDead(){
+		foreach (Transform enemyTransformGameObject in transform) {
+			if (enemyTransformGameObject.childCount > 0) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 	IEnumerator getBoundary(){
@@ -55,5 +82,26 @@ public class EnemySpawner : MonoBehaviour {
 
 
 	}
+
+	public void spawnEnemies(){
+		foreach (Transform child in transform) {
+			GameObject enemy = Instantiate (Enemy1, child.transform.position, this.transform.rotation) as GameObject;
+			enemy.transform.parent = child;
+		}
+	}
+
+	void OnlySpawnFull(){
+		Transform FreePos = nextFreePos ();
+		if (FreePos != null) {
+			GameObject enemy = Instantiate (Enemy1, FreePos.transform.position, this.transform.rotation) as GameObject;
+			enemy.transform.parent = FreePos;
+		}
+
+		if(nextFreePos()){
+		Invoke ("OnlySpawnFull", spawnDelay);
+		}
+	}
+		
+		
 
 }
