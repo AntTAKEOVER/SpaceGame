@@ -15,11 +15,16 @@ public class EnemySpawner : MonoBehaviour {
 	float boundaryLeft;
 	float boundaryRight;
 	// Use this for initialization
+
+	void getBoundary(){
+		boundaryLeft = Camera.main.ViewportToWorldPoint (new Vector3 (0, 0, 0)).x + width/2;
+		boundaryRight = Camera.main.ViewportToWorldPoint (new Vector3 (1, 0, 0)).x - width/2;
+	}
+		
 	void Start () {
-		StartCoroutine ("getBoundary");
+		
 		OnlySpawnFull ();
-		//boundaryLeft = Camera.main.ViewportToWorldPoint (new Vector3 (0, 0, 0)).x + width/2;
-		//boundaryRight = Camera.main.ViewportToWorldPoint (new Vector3 (1, 0, 0)).x - width/2;
+		getBoundary ();
 
 	}
 
@@ -73,15 +78,7 @@ public class EnemySpawner : MonoBehaviour {
 		return true;
 	}
 
-	IEnumerator getBoundary(){
-		yield return new WaitForSeconds (0.25f);
-		{
-			boundaryLeft = Camera.main.ViewportToWorldPoint (new Vector3 (0, 0, 0)).x + width / 2;
-			boundaryRight = Camera.main.ViewportToWorldPoint (new Vector3 (1, 0, 0)).x - width / 2;
-		}
 
-
-	}
 
 	public void spawnEnemies(){
 		foreach (Transform child in transform) {
@@ -93,8 +90,11 @@ public class EnemySpawner : MonoBehaviour {
 	void OnlySpawnFull(){
 		Transform FreePos = nextFreePos ();
 		if (FreePos != null) {
-			GameObject enemy = Instantiate (Enemy1, FreePos.transform.position, this.transform.rotation) as GameObject;
+			Debug.Log (FreePos.transform.position);
+			GameObject enemy = Instantiate (Enemy1, FreePos.transform.position, FreePos.transform.rotation) as GameObject;
+
 			enemy.transform.parent = FreePos;
+			getBoundary ();
 		}
 
 		if(nextFreePos()){
