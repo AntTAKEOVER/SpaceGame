@@ -8,6 +8,7 @@ public class EnemyContoller : MonoBehaviour {
 	public GameObject EnemyProjectile;
 	public GameObject projectileSpawnPoint;
 	public float shotFrequency = 0.5f;
+	public bool canShoot; 
 
 	// Use this for initialization
 	void Start () {
@@ -17,7 +18,7 @@ public class EnemyContoller : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		float ProbabilityOfFiring = shotFrequency * Time.deltaTime;
-		if(Random.value < ProbabilityOfFiring){
+		if(Random.value < ProbabilityOfFiring && canShoot){
 			Shoot();
 		}
 	}

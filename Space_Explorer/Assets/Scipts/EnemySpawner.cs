@@ -14,6 +14,7 @@ public class EnemySpawner : MonoBehaviour {
 	public GameObject dampner;
 	float boundaryLeft;
 	float boundaryRight;
+	public bool shootCan;
 	// Use this for initialization
 
 	void getBoundary(){
@@ -90,9 +91,8 @@ public class EnemySpawner : MonoBehaviour {
 	void OnlySpawnFull(){
 		Transform FreePos = nextFreePos ();
 		if (FreePos != null) {
-			Debug.Log (FreePos.transform.position);
+			//Debug.Log (FreePos.transform.position);
 			GameObject enemy = Instantiate (Enemy1, FreePos.transform.position, FreePos.transform.rotation) as GameObject;
-
 			enemy.transform.parent = FreePos;
 			getBoundary ();
 		}
