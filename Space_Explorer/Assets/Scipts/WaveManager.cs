@@ -8,23 +8,15 @@ public class WaveManager : MonoBehaviour {
 	int currentWaveNumber = 1;
 	GameObject formation; 
 	int enmemiesCount;
-	bool allEnemiesDead = false;
+	//bool allEnemiesDead = false;
 	float formationsRemaining;
 	float totalFormations;
 	GameObject Childformation;
 
 
 	void Start(){
-		
-		currentWave = waves [currentWaveNumber - 1];
-		totalFormations = currentWave.enemyCount;
-		formationsRemaining = totalFormations;
-		Childformation = Instantiate (currentWave.enemyFormation, transform.position, Quaternion.identity) as GameObject;
-		formationsRemaining -= 1;
-		Childformation.transform.parent = transform;
-
-
-		}
+		initializeWave ();
+	}
 
 	void Update(){
 		//allEnemiesDead = currentWave.enemyFormation.GetComponent<EnemySpawner> ().AllEnemiesDead();
@@ -32,14 +24,46 @@ public class WaveManager : MonoBehaviour {
 	//	if (allEnemiesDead) {
 			//spawnEnemies ();
 		//}
+		Debug.LogWarning("Wave Number " + currentWaveNumber);
+		Debug.LogWarning ("Enemy remaining " + formationsRemaining );
+
+	}
+
+	void progressWave(){
+		//currentWaveNumber += 1;
+
+
+		if (currentWaveNumber <= waves.Length) {
+			currentWave = waves [currentWaveNumber - 1];
+	
+			totalFormations = currentWave.enemyCount;
+			formationsRemaining = totalFormations;
+		
+			spawnEnemies ();
+		}
+	}
+
+
+	void initializeWave(){
+		currentWave = waves [currentWaveNumber - 1];
+		totalFormations = currentWave.enemyCount;
+		formationsRemaining = totalFormations;
+		spawnEnemies ();
 	}
 
 	public void spawnEnemies(){
 		if (formationsRemaining > 0) {
-			Destroy (Childformation.gameObject);
+			if (Childformation != null) {
+				Destroy (Childformation.gameObject);
+			}
 			Childformation = Instantiate (currentWave.enemyFormation, transform.position, Quaternion.identity) as GameObject;
 			formationsRemaining -= 1;
 			Childformation.transform.parent = transform;
+
+		}else if (formationsRemaining <= 0 && currentWaveNumber <= waves.Length) {
+			Debug.Log ("Progressed Wave");
+			currentWaveNumber += 1;
+			progressWave ();
 		}
 	}
 
