@@ -10,11 +10,11 @@ public class EnemySpawner : MonoBehaviour {
 	public float tilt = 35f;
 	public float spawnDelay = 0.5f;
 	public float movementTime = 0.08f;
-	public float rotateTime = 0.05f;
+	//public float rotateTime = 0.05f;
 	public GameObject dampner;
 	float boundaryLeft;
 	float boundaryRight;
-	public bool shootCan;
+	//public bool shootCan;
 	// Use this for initialization
 
 	void getBoundary(){
@@ -23,7 +23,7 @@ public class EnemySpawner : MonoBehaviour {
 	}
 		
 	void Start () {
-		
+		dampner = GameObject.Find ("DampnerForEnemyFormation");
 		OnlySpawnFull ();
 		getBoundary ();
 
@@ -53,9 +53,12 @@ public class EnemySpawner : MonoBehaviour {
 		transform.position = new Vector3 (Mathf.Lerp (transform.position.x, dampner.transform.position.x, movementTime), transform.position.y, transform.position.z);
 
 		if (AllEnemiesDead ()) {
-			Debug.Log ("Spawn New Wave");
-			OnlySpawnFull();
+			FindObjectOfType<WaveManager> ().spawnEnemies ();
 		}
+		Debug.LogWarning (AllEnemiesDead());
+		//	Debug.Log ("Spawn New Wave");
+		//	OnlySpawnFull();
+		
 
 		
 	}
@@ -70,7 +73,7 @@ public class EnemySpawner : MonoBehaviour {
 	}
 		
 
-	bool AllEnemiesDead(){
+	public bool AllEnemiesDead(){
 		foreach (Transform enemyTransformGameObject in transform) {
 			if (enemyTransformGameObject.childCount > 0) {
 				return false;
@@ -81,12 +84,12 @@ public class EnemySpawner : MonoBehaviour {
 
 
 
-	public void spawnEnemies(){
+	/*public void spawnEnemies(){
 		foreach (Transform child in transform) {
 			GameObject enemy = Instantiate (Enemy1, child.transform.position, this.transform.rotation) as GameObject;
 			enemy.transform.parent = child;
 		}
-	}
+	} */
 
 	void OnlySpawnFull(){
 		Transform FreePos = nextFreePos ();
@@ -99,9 +102,9 @@ public class EnemySpawner : MonoBehaviour {
 
 		if(nextFreePos()){
 		Invoke ("OnlySpawnFull", spawnDelay);
-		}
+		} 
 	}
-		
-		
+
+
 
 }
