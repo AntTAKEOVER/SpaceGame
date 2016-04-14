@@ -24,8 +24,8 @@ public class WaveManager : MonoBehaviour {
 	//	if (allEnemiesDead) {
 			//spawnEnemies ();
 		//}
-		Debug.LogWarning("Wave Number " + currentWaveNumber);
-		Debug.LogWarning ("Enemy remaining " + formationsRemaining );
+		//Debug.LogWarning("Wave Number " + currentWaveNumber);
+		//Debug.LogWarning ("Enemy remaining " + formationsRemaining );
 
 	}
 
@@ -61,7 +61,7 @@ public class WaveManager : MonoBehaviour {
 			Childformation.transform.parent = transform;
 
 		}else if (formationsRemaining <= 0 && currentWaveNumber <= waves.Length) {
-			Debug.Log ("Progressed Wave");
+			//Debug.Log ("Progressed Wave");
 			currentWaveNumber += 1;
 			progressWave ();
 		}

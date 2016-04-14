@@ -1,11 +1,11 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scipts/WaveManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scipts/EnemySpawner.cs">
     <Files>
-      <File FileName="Assets/Scipts/EnemySpawner.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scipts/EnemyContoller.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scipts/PlayerContoller.cs" Line="29" Column="107" />
-      <File FileName="Assets/Scipts/WaveManager.cs" Line="63" Column="74" />
+      <File FileName="Assets/Scipts/EnemyContoller.cs" Line="20" Column="51" />
+      <File FileName="Assets/Scipts/EnemySpawner.cs" Line="58" Column="1" />
+      <File FileName="Assets/Scipts/PlayerContoller.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scipts/WaveManager.cs" Line="64" Column="1" />
       <File FileName="Assets/Scipts/Projectile.cs" Line="1" Column="1" />
       <File FileName="Assets/Scipts/BulletShredder.cs" Line="1" Column="1" />
     </Files>

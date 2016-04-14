@@ -55,7 +55,7 @@ public class EnemySpawner : MonoBehaviour {
 		if (AllEnemiesDead ()) {
 			FindObjectOfType<WaveManager> ().spawnEnemies ();
 		}
-		Debug.LogWarning (AllEnemiesDead());
+		//Debug.LogWarning (AllEnemiesDead());
 		//	Debug.Log ("Spawn New Wave");
 		//	OnlySpawnFull();
 		
